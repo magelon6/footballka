@@ -1,13 +1,15 @@
-import './App.css'
+
+import Canvas from './canvas'
+import Costumizer from './pages/Costumizer'
+import Home from './pages/Home'
 
 function App() {
-
   return (
-    <div>
-      <h1 className='head-text'>
-        hello
-      </h1>
-    </div>
+    <main className="app transition-all ease-in">
+      <Home />
+      <Costumizer />
+      <Canvas />
+    </main>
   )
 }
 
