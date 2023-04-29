@@ -1,8 +1,48 @@
-// import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { AnimatePresence } from 'framer-motion'
+import { useSnapshot } from 'valtio'
+import { motion } from "framer-motion"
+
+import Tab from '../components/Tab';
+
+import config from '../config/config';
+import state from '../store';
+import { download } from '../assets';
+import { downloadCanvasToImage, reader } from '../config/helpers';
+import { EditorTabs, FilterTabs, DecalTypes } from '../config/constants';
+import { fadeAnimation, slideAnimation } from '../config/motion';
+
 
 const Costumizer = () => {
+
+  const snap = useSnapshot(state)
+
   return (
-    <div>Costumizer</div>
+    
+    <AnimatePresence>
+      {!snap.intro && (
+        <>
+          <motion.div
+            key='custom'
+            className='absolute top-0 left-0'
+            {...slideAnimation('left')}
+          >
+            <div className='flex items-center min-h-screen'>
+              <div className='editortabs-container tabs'>
+                {EditorTabs.map((tab) => (
+                  <Tab
+                    key={tab.name}
+                    tab={tab}
+                    handleClick={() => {}}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+    
   )
 }
 
